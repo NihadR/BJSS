@@ -1,26 +1,25 @@
+
+
 {% extends "layout.html" %} {% block content %}
 <div class="content-section">
   <form method="POST" action="">
-    {{ form.hidden_tag() }}
+    
     <fieldset class="form-group">
       <div class="form-group">
-        {{ form.house_price.label(class="form-control-label") }}
-
-        {% if form.house_price.errors %}
-        {{ form.house_price(class="form-control form-control-lg") }}
+          <input type="text" id="lname" name="value"><br><br>
+          <input type="submit" id="lname" name="input"><br><br>
         <div class="invalid-feedback">
-          {% for errors in form.house_price.errors %}
-          <span> {{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %}
-        {{ form.house_price(class="form-control form-control-lg") }}
-        {% endif %}
+
       </div>
     </fieldset>
     <div class="form-group">
-      {{ form.submit(class="btn btn-outline-info ")}}
     </div>
+    
   </form>
+  <div> 
+    {% if msg == True %}
+     <span> {{ msg }} </span>
+    {% endif %}
+  </div>
 </div>
 {% endblock content %}

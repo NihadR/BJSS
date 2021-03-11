@@ -1,30 +1,26 @@
-calculated = {}
-def LBTT_calculator(n):
-    levels = 3
-    threshold = {250000, 325000, 750000}
-    rate = {0.05, 0.1, 0.12}
+country = {
+        'scotland': {
+    'threshold' : [0, 250000, 325000, 750000],
+    'rate' :[0, 0.05, 0.1, 0.12]
+    }, 
+    'england': {
+        'threshold': [0, 1000000, 250000, 750000],
+        'rate' : [0, 0.05, 0.1, 0.12]
+    }}
 
-    tax = 0
-    
-
-
-double netIncome = 55000;
-
-        int levels = 3;
-        double[] threshold = {0, 15000, 29000, 50000};
-        double[] rate = {0, 15,20,25};
-
-        double taxOwd = 0;
-
-        double taxableIncome = 0;
-        double netIncomeLeft = netIncome;
-
-        for (int i = levels; i > 0; i--) {
-            taxableIncome = netIncomeLeft - threshold[i];
-            taxOwd += taxableIncome * (rate[i]/100);
-            netIncomeLeft = threshold[i];
-        }
-        System.out.println("taxOwd " + taxOwd);
-
-        
-LBTT_calculator(1100000)
+def LBTT_calculator(price):
+    thres = country.get('scotland').get('threshold')
+    rate = country.get('scotland').get('rate')
+    first = (thres[2] - thres[1]) * rate[1]
+    second = (thres[3] - thres[2]) * rate[2]
+    if price < thres[0]:
+        tax = 0
+    elif price > thres[0] and price < thres[1]:
+        price = price - thres[0]
+        tax = (price * rate[1])
+    elif price > thres[1] and price < thres[2]:
+        tax = (price * rate[2]) + first
+    else:
+        price = price - 750000
+        tax = (price * rate[3]) + first + second
+    return tax

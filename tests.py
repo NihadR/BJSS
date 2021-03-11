@@ -11,7 +11,7 @@ class FlaskTestCase(unittest.TestCase):
         response = tester.get('/', content_type = 'html/text')
         self.assertEqual(response.status_code, 200)
     
-    def test_function(self):
+    def test_first(self):
         tester = app.test_client(self)
         self.assertEqual(LBTT_calculator(1100000), 88250 )
 
@@ -27,6 +27,9 @@ class FlaskTestCase(unittest.TestCase):
     def test_function3(self):
         tester = app.test_client(self)
         self.assertEqual(LBTT_calculator(400000), 11250)
+    
+  
+
 
 
 
